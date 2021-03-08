@@ -1,0 +1,65 @@
+{
+  "name": "person-web-music",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "analyz": "cross-env use_analyzer=true vue-cli-service build",
+    "dev": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "babel-polyfill": "6.26.0",
+    "browser-id3-writer": "^4.4.0",
+    "downloadjs": "^1.4.7",
+    "fundebug-javascript": "^2.4.2",
+    "fundebug-vue": "^0.0.1",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.21",
+    "node-sass": "^4.9.3",
+    "qrcode.vue": "^1.6.2",
+    "sass-loader": "^7.1.0",
+    "terser-webpack-plugin": "4.1.0",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "webpack-bundle-analyzer": "^4.3.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.12",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.12",
+    "@vue/cli-service": "^3.0.0-rc.12",
+    "cross-env": "^7.0.3",
+    "element-ui": "^2.4.5",
+    "node-sass": "^4.12.0",
+    "vudio.js": "^1.0.3",
+    "vue-resource": "^1.5.1",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
