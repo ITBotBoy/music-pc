@@ -3,7 +3,7 @@
         <div class="left-nav-bg"></div>
         <div class="avatar nav-line">
             <img class="avatar-img iconfont" @click="goToUser" v-if="user.avatarUrl" :src="user.avatarUrl"/>
-            <img class="avatar-img iconfont" @click="goToUser" src="../assets/img/u-no-avatar.png"
+            <img class="avatar-img iconfont" @click="goToUser" :src="require($route.path.includes('simple')?'../assets/img/return.png':'../assets/img/u-no-avatar.png')"
                  v-if="!user.avatarUrl">
             <div class="icon-text" @click="goToUser">{{user.userId ? user.nickname : '登录'}}</div>
         </div>
@@ -73,7 +73,7 @@ export default {
         })
     },
     created() {
-    
+      console.log(this.$route.path)
     },
     methods: {
         goToUser() {
@@ -91,30 +91,31 @@ export default {
 <style lang="scss">
 .mode-simple {
     .page-left-nav {
-        height: 100px !important;
-        width: 100px !important;
-        border-radius: 50%;
-        padding: 0;
-        top: -40px;
-        left: -40px;
-        min-height: 0;
+        height: 50px !important;
+        width: 50px !important;
+        border-radius:50%;
+        padding:0;
+        /*top: -40px;
+        left: -40px;*/
+        min-height:0;
         
         .avatar {
+            overflow: hidden;
             margin-top: 0;
-            width: 100px !important;
-            height: 100px !important;
+            width: 50px !important;
+            height: 50px !important;
             
             .avatar-img {
-                width: 100px !important;
-                height: 100px !important;
+                width: 50px !important;
+                height: 50px !important;
             }
         }
         
-        &:hover {
+        /*&:hover {
             transform: scale(1.5);
             top: -20px;
             left: -20px;
-        }
+        }*/
     }
 }
 

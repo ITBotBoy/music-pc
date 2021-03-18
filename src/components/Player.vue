@@ -501,11 +501,13 @@ export default {
                     this.updatePlayingStatus(!this.playing);
                     return false;
                 case (codeMap.TO_SIMPLE || 'ctrl-83'):
-                    window.location = '/simple';
+                  this.$router.push('/simple')
+                    // window.location = ;
                     return false;
                 case (codeMap.QUIT_SIMPLE || '27'):
                     if (this.mode === 'simple') {
-                        window.location = '/';
+                        // window.location = '/';
+                      this.$router.push('/')
                     }
                     return false;
             }
