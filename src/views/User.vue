@@ -47,11 +47,16 @@
                         发送{{time > 0 ? `（${time}s）` : ''}}
                     </div>
                 </div>
-                <div
+                <el-button
                     @click="login"
-                    :class="`login-btn ${(((type === 'captcha' && !code) || (type === 'password' && !password)) || !username) && 'disabled'}`"
+                    type="plain"
+                    :loading="loading"
+                    style="padding: 0;background: transparent;"
+                    :style="!((type === 'captcha' && !code) || (type === 'password' && !password) || !username) && {color:'#fff'}"
+                    :disabled="((type === 'captcha' && !code) || (type === 'password' && !password) || !username)"
+                    class="login-btn"
                 >登录网易云
-                </div>
+                </el-button>
             </div>
         </div>
         
@@ -174,6 +179,7 @@ export default {
                 weekMax: 0,
                 historyMax: 0,
             },
+            loading:false,
             uInfo: {},
             selected: 'week',
             uid: undefined,
@@ -229,6 +235,7 @@ export default {
                 week: [],
                 history: [],
             };
+
             if (!this.uid) {
                 this.uid = this.user.userId;
                 this.uInfo = {};
@@ -291,6 +298,7 @@ export default {
         },
         async login() {
             const {username, password, code, type} = this;
+            this.loading=true
             if (type === 'password') {
                 const params = {
                     password,
@@ -304,17 +312,22 @@ export default {
                 }
                 request({api, data: params, method: 'post'})
                     .then((res) => {
+                        this.loading=false;
                         if (res) {
                             loginStatus();
                         } else {
                             this.$message.error('登录失败');
                         }
-                    }, () => this.$message.error('登录失败'))
+                    }, () => {
+                        this.loading=false;
+                        return this.$message.error('登录失败')
+                    })
                 
             } else {
                 const res = await request({api: 'CAPTCH_VERIFY', data: {phone: username, captcha: code}});
                 if (res) {
                     this.$message.success('登录成功');
+                    this.loading=false;
                     loginStatus();
                 }
             }
@@ -553,9 +566,10 @@ export default {
                 }
             }
         }
-        
+
         .login-btn {
             width: 285px;
+            //color: #fff;
             border: 1px dashed #fff8;
             margin-left: calc(50% - 190px);
             border-radius: 5px;
@@ -563,21 +577,21 @@ export default {
             line-height: 40px;
             margin-top: 20px;
             text-align: center;
-            font-weight: bold;
+            //font-weight: bold;
             font-size: 18px;
             letter-spacing: 5px;
             transition: 0.3s;
-            cursor: pointer;
+            //cursor: pointer;
             
-            &:hover {
+            /*&:hover {
                 border: 1px dashed #fff8;
                 color: #fffc;
-            }
+            }*/
             
-            &.disabled {
+            /*&.disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
-            }
+            }*/
         }
     }
     

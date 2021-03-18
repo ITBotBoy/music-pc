@@ -74,27 +74,10 @@
           placeholder="在 y.qq.com F12打开控制台输入 document.cookie，将打印的字符串粘贴进来"
           v-model="inputCookie"
         />
-        <el-button class="mt_10" @click="setCookie">设置</el-button>
+        <el-button :loading="loading" :disabled="!inputCookie" class="mt_10" @click="setCookie">设置</el-button>
         <span class="input-explain pl_20">Cookie 数据仅存储在本地</span>
       </div>
     </div>
-    <!--<div class="input-row"  v-if="openSetQCookie">
-      <div class="input-label">半自动获取：</div>
-      <div class="input-content">
-        <div>
-          <div>1、下载并解压 <a href="http://music.jsososo.com/download/qqmusic_cookie_porter_1_1.zip" target="_blank" >获取企鹅音乐Cookie的 Chrome 插件</a></div>
-          <div class="mt_5">
-            2、打开新标签页输入 <i>chrome://extensions</i>，钩上右上角开发者模式，
-            点击左上角加载已解压的插件，选择刚才解压出的文件夹
-          </div>
-          <div class="mt_5">
-            3、打开 <a href="https://y.qq.com?forceUpdateCookie=1" target="_blank">https://y.qq.com</a> 并登陆企鹅号即可自动获取
-          </div>
-        </div>
-        <div class="input-explain">Cookie 数据会存储于服务器</div>
-      </div>
-    </div>-->
-
     <div class="setting-title">播放设置</div>
     <div class="input-row">
       <div class="input-row">
@@ -180,6 +163,7 @@
     name: "Setting",
     data() {
       return {
+          loading:false,
         showDrawMusic: Storage.get('showDrawMusic') !== '0',
         drawMusicType: Storage.get('drawMusicType') || '1',
         drawMusicNum: Storage.get('drawMusicNum') || '64',
@@ -228,18 +212,21 @@
     },
     methods: {
       async setCookie() {
+          this.loading=true
         const expireTime = new Date(Date.now() + 86400000).toString();
         try {
           this.inputCookie.split('; ').forEach((c) => {
             document.cookie=`${c}; expires=${expireTime}; `;
           });
           const result = await checkCookie();
+            this.loading=false
           if (result.success) {
             this.$message.success('设置 Cookie 成功');
           } else {
             throw({ message: 'cookie wrong'})
           }
         } catch (err) {
+            this.loading=false
           this.$message.error('cookie 错误或过期')
         }
       }
