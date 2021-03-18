@@ -19,12 +19,7 @@
             </div>
         </div>
         <div class="content-block">
-            <h2>以下为开源项目链接</h2>
-            <p>
-                设置页可以选择输入自己的 qq 音乐 Cookie 获取更多的一些操作，可以借助这个 Chrome 插件
-                <a href="https://github.com/jsososo/qqmusic-cookie-porter" target="_blank">qqmusic-cookie-porter</a>
-                实现半自动化的获取 Cookie，模拟用户登陆
-            </p>
+            <h2>感谢以下提供的开源项目</h2>
             <p class="mt_20">GitHub: <a href="https://github.com/jsososo/NeteaseMusic" target="_blank">网易云第三方 Web
                 播放器</a></p>
             <p>后端：「网易云」<a href="https://github.com/Binaryify/NeteaseCloudMusicApi" target="_blank">NeteaseCloudMusicApi</a>
@@ -39,7 +34,7 @@
             <p>后端：「聚合接口」
                 <a href="https://github.com/jsososo/MixMusicApi" target="_blank">MixMusicApi</a>
             </p>
-            <p>Chrome插件：「QQ音乐Cookie搬运工」<a href="https://github.com/jsososo/qqmusic-cookie-porter" target="_blank">qqmusic-cookie-porter</a>
+            <p>
             </p>
         </div>
         <div class="content-block">
@@ -77,8 +72,8 @@ export default {
         return {
             history: [
                 {
-                    txt: '🎧 听歌',
-                    time: '2021-1-8',
+                    txt: '🎧 听音乐',
+                    time: '2021-3-18',
                 }
             ],
         }

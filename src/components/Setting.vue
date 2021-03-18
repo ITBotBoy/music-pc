@@ -62,7 +62,7 @@
       <div class="input-label">开启：</div>
       <div class="input-content">
         <el-switch v-model="openSetQCookie" />
-        <div class="input-explain">开启并设置Cookie后可以获得更多操作</div>
+        <div class="input-explain">开启并设置Cookie后可以获得更多操作，<span>document.cookie</span></div>
       </div>
     </div>
     <div class="input-row" v-if="openSetQCookie">
@@ -71,14 +71,14 @@
         <el-input
           style="width: 450px"
           type="text"
-          placeholder="在 y.qq.com 控制台输入 document.cookie，将打印的字符串粘贴进来"
+          placeholder="在 y.qq.com F12打开控制台输入 document.cookie，将打印的字符串粘贴进来"
           v-model="inputCookie"
         />
         <el-button class="mt_10" @click="setCookie">设置</el-button>
-        <span class="input-explain pl_20">Cookie 数据仅存储在本地（不会获取 Cookie 的也可以借助下面的插件手动复制！）</span>
+        <span class="input-explain pl_20">Cookie 数据仅存储在本地</span>
       </div>
     </div>
-    <div class="input-row"  v-if="openSetQCookie">
+    <!--<div class="input-row"  v-if="openSetQCookie">
       <div class="input-label">半自动获取：</div>
       <div class="input-content">
         <div>
@@ -93,7 +93,7 @@
         </div>
         <div class="input-explain">Cookie 数据会存储于服务器</div>
       </div>
-    </div>
+    </div>-->
 
     <div class="setting-title">播放设置</div>
     <div class="input-row">

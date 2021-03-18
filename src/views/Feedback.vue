@@ -95,14 +95,6 @@ export default {
                 {
                     q: '好多会员歌曲不能听了！',
                     a: '因为我忘了更新服务器 Cookie 信息了，等我记起来就好了'
-                },
-                {
-                    q: '项目问题',
-                    a: '项目是用一个大佬的开源项目魔改了部分（https://github.com/jsososo/NeteaseMusic）实现的',
-                },
-                {
-                    q: '接口问题',
-                    a: '网易云的接口是用另一个大佬的开源项目（https://github.com/Binaryify/NeteaseCloudMusicApi）实现的',
                 }
             ]
         }
