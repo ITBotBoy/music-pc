@@ -65,8 +65,8 @@
                 <img class="song-cover" :src="`${allSongs[s].al && allSongs[s].al.picUrl}?param=50y50`" alt=""/>
                 <span class="song-name">{{allSongs[s].name}}</span>
                 <el-tooltip class="item" effect="dark" content="mv" placement="top">
-                    <a :href="changeUrlQuery({ id: allSongs[s].mvId, from: allSongs[s].platform }, '#/mv', false)"
-                       class="song-mv iconfont icon-mv" v-if="allSongs[s].mvId"></a>
+                    <router-link :to="changeUrlQuery({ id: allSongs[s].mvId, from: allSongs[s].platform }, '/mv', false)"
+                       class="song-mv iconfont icon-mv" v-if="allSongs[s].mvId"></router-link>
                 </el-tooltip>
                 <span class="song-artist">{{(allSongs[s].ar || []).map((a) => a.name).join('/')}}</span>
                 <div class="icon-container">

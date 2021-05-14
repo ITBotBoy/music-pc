@@ -27,13 +27,13 @@
       <div class="info-line">
         <div class="info-label"><i class="iconfont icon-singer" /></div>
         <div class="info-val">
-          <a v-for="a in playNow.ar" :key="a.id" :href="changeUrlQuery({id: a.id, from: playNow.platform, mid: a.mid }, '#/singer', false)">{{a.name}} </a>
+          <router-link v-for="a in playNow.ar" :key="a.id" :to="changeUrlQuery({id: a.id, from: playNow.platform, mid: a.mid }, '#/singer', false)">{{a.name}} </router-link>
         </div>
       </div>
       <div class="info-line" v-if="playNow.al && playNow.al.name">
         <div class="info-label"><i class="iconfont icon-album" /></div>
         <div class="info-val">
-          <a :href="changeUrlQuery({ id: playNow.al.id, mid: playNow.al.mid, from: playNow.platform }, '#/album', false)">{{playNow.al.name}}</a>
+            <router-link :to="changeUrlQuery({ id: playNow.al.id, mid: playNow.al.mid, from: playNow.platform }, '#/album', false)">{{playNow.al.name}}</router-link>
         </div>
       </div>
 
@@ -43,9 +43,9 @@
           <i class="iconfont icon-comment"></i>
           <span class="pl_10 ft_12" v-if="playNow.comments">{{numberHandle(playNow.comments.total)}}</span>
         </router-link>
-        <a v-if="playNow.mvId" :href="changeUrlQuery({ id: playNow.mvId, from: playNow.platform }, '#/mv', false)" class="btn-group-href">
+        <router-link v-if="playNow.mvId" :to="changeUrlQuery({ id: playNow.mvId, from: playNow.platform }, '/mv', false)" class="btn-group-href">
           <i class="iconfont icon-mv"></i>
-        </a>
+        </router-link>
       </div>
     </div>
   </div>

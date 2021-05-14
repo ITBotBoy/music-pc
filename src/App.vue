@@ -1,7 +1,10 @@
 <template>
     <div id="app" :class="`mode-${mode}`">
-        <img src="./assets/img/bg_001.jpg" alt="" class="app-bg">
+        <img src="./assets/img/water-768745_1920.jpg" alt="" class="app-bg">
         <img id="play-music-bg" alt="">
+        <!--<div class="appLoading iconfont icon-jiazaizhong">
+            <i class="appLoadingInnter iconfont icon-yinle"></i>
+        </div>-->
         <canvas :width="pageWidth" :height="pageHeight" id="music-data-canvas"></canvas>
         <div class="main-container">
             <div class="page-left-container" v-if="showCover">
@@ -15,6 +18,10 @@
             <Player/>
             <Operation/>
         </div>
+        <!--<div class="loadingWrap">
+            <div class="drop"></div>
+            <div class="wave"></div>
+        </div>-->
     </div>
 </template>
 
@@ -118,8 +125,181 @@ export default {
     methods: {}
 }
 </script>
+<!--<style lang="scss">
 
+$top:60vh;
+$animation1:ripple 2s ease-in 0s infinite forwards ;
+$animation2:ripple-2 2s ease-in 0s infinite forwards ;
+
+.loadingWrap {
+    opacity:.3;
+    position: absolute;
+    top:$top;
+    left:50vw;
+    margin-left: -50vw;
+    text-align: center;
+    z-index:9;
+    width:100vw;
+    height:100vh;
+}
+
+.drop {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    top: -50vh;
+    margin: 0 auto;
+    background: #FFF;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    -moz-animation-name: drip;
+    -webkit-animation-name: drip;
+    animation-name: drip;
+    -moz-animation-timing-function: cubic-bezier(1,0,.91,.19);
+    -webkit-animation-timing-function: cubic-bezier(1,0,.91,.19);
+    animation-timing-function: cubic-bezier(1,0,.91,.19);
+    -moz-animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.drop:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left:0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 30px solid rgba(255,255,255,1);
+    top: -22px;
+}
+
+.wave {
+    position: relative;
+    opacity: 0;
+    top: 0;
+    margin:0 auto;
+    width: 2px;
+    height: 1px;
+    border: #FFF 7px solid;
+    -moz-border-radius: 300px / 150px;
+    -webkit-border-radius: 300px / 150px;
+    border-radius: 300px / 150px;
+    -moz-animation-name: ripple;
+    -webkit-animation-name: ripple;
+    animation-name: ripple;
+    -moz-animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -moz-animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.wave:after {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    top: -5px;
+    left:  - 5px;
+    width: 2px;
+    height: 1px;
+    border: #FFF 5px solid;
+    -moz-border-radius: 300px / 150px;
+    -webkit-border-radius: 300px / 150px;
+    border-radius: 300px / 150px;
+    -moz-animation-name: ripple-2;
+    -webkit-animation-name: ripple-2;
+    animation-name: ripple-2;
+    -moz-animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+@keyframes ripple {
+    from {
+        opacity: 1;
+    }
+    to {
+        width: 600px;
+        height: 300px;
+        border-width: 1px;
+        top: -100px;
+        opacity: 0;
+    }
+}
+
+@keyframes ripple-2 {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        width: 200px;
+        height: 100px;
+        border-width: 1px;
+        top: 100px;
+        left: 200px;
+    }
+}
+
+@keyframes drip {
+    to {
+        top: 190px;
+    }
+}
+</style>-->
 <style lang="scss">
+.appLoading {
+    opacity: .3;
+    position: fixed;
+    z-index:9;
+    top:45vh;
+    left:50vw;
+    color:#4e6084;
+    margin-left:-25px;
+    font-size:50px!important;
+    animation: rotateAnimation 1s linear infinite;
+    &Innter {
+        position: absolute;
+        top:50%;
+        left:50%;
+        margin-left:-15px;
+        margin-top:-18.5px;
+        color:#4e6084;
+        font-size:30px!important;
+    }
+}
+@keyframes rotateAnimation{
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        -webkit-transform: rotate(90deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    75% {
+        -webkit-transform: rotate(270deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
 @import "assets/style/common";
 
 body {
@@ -164,12 +344,13 @@ a {
         -ms-filter: blur(50px) brightness(60%);
         filter: blur(50px) brightness(60%);
     }
-    
     .app-bg {
         position: relative;
         z-index: -10;
         top: 0;
         left: 0;
+        width: auto;
+        margin:0 auto;
         min-width: 100vw;
         min-height: 100vh;
     }

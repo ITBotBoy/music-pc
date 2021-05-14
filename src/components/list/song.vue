@@ -18,8 +18,8 @@
         <div class="song-name">
           {{allSongs[s].name}}
 
-          <a
-            :href="changeUrlQuery({ id: allSongs[s].mvId, from: allSongs[s].platform }, '#/mv', false)"
+          <router-link
+            :to="changeUrlQuery({ id: allSongs[s].mvId, from: allSongs[s].platform }, '/mv', false)"
             class="inline-block ml_5 iconfont icon-mv"
             style="font-size: 14px;font-weight: 100"
             v-if="showCover && allSongs[s].mvId"
@@ -27,8 +27,8 @@
         </div>
         <div>
           <div class="song-ar">
-            <a
-              :href="changeUrlQuery({ id: allSongs[s].mvId, from: allSongs[s].platform }, '#/mv', false)"
+            <router-link
+              :href="changeUrlQuery({ id: allSongs[s].mvId, from: allSongs[s].platform }, '/mv', false)"
               class="inline-block mr_5 iconfont icon-mv"
               v-if="!showCover && allSongs[s].mvId"
             />

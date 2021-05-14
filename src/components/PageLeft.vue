@@ -180,7 +180,7 @@ export default {
     opacity: 0.4;
     z-index: 100;
     min-height: 600px;
-    
+
     .left-nav-bg {
         //background: -webkit-linear-gradient(top, #fff8, #fff6, #fff0, #fff0);
         height: 100%;
@@ -190,20 +190,20 @@ export default {
         width: 400px;
         transition: 0.1s;
     }
-    
+
     &:hover {
         width: 160px;
         opacity: 1;
-        
+
         .left-nav-bg {
-            background: -webkit-linear-gradient(top, #ccc9, #ccc9, #ccc5, #ccc0, #ccc0, #ccc0);
+            background: -webkit-linear-gradient(top, rgba(190,198,211,.9), rgba(190,198,211,.5), rgba(190,198,211,.3), rgba(190,198,211,.2), rgba(190,198,211,.1), rgba(190,198,211,0));
             //border-radius: 0 100% 200% 0;
         }
-        
+
         .iconfont {
             opacity: 1;
         }
-        
+
         .avatar {
             .avatar-img {
                 width: 50px;
@@ -211,25 +211,25 @@ export default {
             }
         }
     }
-    
+
     .avatar {
         margin-top: 30px;
         opacity: 0.8;
-        
+
         .avatar-img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
         }
     }
-    
+
     .nav-line {
         width: 500px;
         line-height: 40px;
         height: 40px;
         margin-bottom: 20px;
         cursor: pointer;
-        
+
         a {
             color: #fff !important;
         }

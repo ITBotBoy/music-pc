@@ -22,8 +22,8 @@
                     <i class="el-icon-loading mr_10" v-if="loading"/>
                     <span class="player-song-title pointer" @click="goTo('#/')">{{playNow.name}}</span>
                     <span class="player-song-singer pl_20 pointer">
-            <a v-for="a in playNow.ar" :key="a.id"
-               :href="changeUrlQuery({ id: a.id, mid: a.mid, from: playNow.platform }, '#/singer', false)">{{a.name}} </a>
+            <router-link v-for="a in playNow.ar" :key="a.id"
+               :to="changeUrlQuery({ id: a.id, mid: a.mid, from: playNow.platform }, '#/singer', false)">{{a.name}} </router-link>
           </span>
                     <span
                         v-if="favSongMap[playNow.platform]"

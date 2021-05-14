@@ -7,7 +7,7 @@
           {{baseInfo.name}}
           <div class="album-name-alia">{{(baseInfo.alias || []).join('、')}}</div>
           <div class="album-artist" v-if="baseInfo.ar">
-            <a v-for="a in baseInfo.ar" :key="a.id" :href="changeUrlQuery({ id: a.id, mid: a.mid, from: a.platform }, '#/singer', false)">{{a.name}} </a>
+            <router-link v-for="a in baseInfo.ar" :key="a.id" :to="changeUrlQuery({ id: a.id, mid: a.mid, from: a.platform }, '#/singer', false)">{{a.name}} </router-link>
           </div>
           <div class="album-company" v-if="baseInfo.company">发行：{{baseInfo.company}}</div>
           <div class="album-pb-time">{{handleTime(baseInfo.publishTime)}}</div>

@@ -2,7 +2,7 @@
   <div class="mv-page">
     <div class="mv-info" v-if="mvInfo.id">
       <div class="mv-title">
-        <router-link class="iconfont icon-arrow-left pr_20" to="/" />{{mvInfo.name}}
+        <a style="cursor: pointer" class="iconfont icon-arrow-left pr_20" @click="$router.back(-1)"/>{{mvInfo.name}}
       </div>
       <div class="mv-ar">
         {{mvInfo.ar.map((a) => a.name).join(' ')}}
@@ -14,7 +14,7 @@
     </div>
     <div class="recommend-list hide-scroll">
       <div ref="recommendList">
-        <div class="recommend-item" :key="item.id" v-for="item in recommend" @click="changeUrlQuery({ id: item.id, from: item.platform }, '#/mv')">
+        <div class="recommend-item" :key="item.id" v-for="item in recommend" @click="changeUrlQuery({ id: item.id, from: item.platform }, '/mv')">
           <img class="r-m-cover" :src="item.cover" alt="" />
           <div class="r-m-name" >{{item.name}}</div>
         </div>

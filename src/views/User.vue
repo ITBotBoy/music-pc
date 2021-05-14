@@ -10,7 +10,7 @@
             <!--</div>-->
             <!--</div>-->
             <div class="login-input-container">
-                <template v-if="$route.query.setcookie">
+                <template v-if="$route.params.uid">
                     <div class="input-line">
                         <div class="input-label">
                             cookie
@@ -257,18 +257,25 @@ export default {
             this.getUserDetail();
             this.getRecord(1);
         }
-        
         this.$store.dispatch('updateShowCover', false);
     },
     methods: {
         async setCookie(){
             try {
-                console.log(JSON.parse(this.editCookie).length)
-                const cookieJson={};
-                JSON.parse(this.editCookie).map(item=>{
-                    cookieJson[item.name]=item.value
-                })
-                const res=await request({api: 'QQ_SET_COOKIE',method: 'post', data: {"data":cookieJson,key:this.$route.query.key}});
+                let cookieJson;
+                if(/\[/.test(this.editCookie)){
+                    cookieJson={}
+                    JSON.parse(this.editCookie).map(item=>{
+                        cookieJson[item.name]=item.value
+                    })
+                }else {
+                    if(/;/.test(this.editCookie)){
+                        cookieJson=this.editCookie
+                    }else {
+                        return this.$message.error('cookie不符合格式')
+                    }
+                }
+                const res=await request({api: 'QQ_SET_COOKIE',method: 'post', data: {"data":cookieJson,key:this.$route.params.uid}});
                 if (res.result === 100) {
                     this.$message.success('设置成功')
                 } else {
