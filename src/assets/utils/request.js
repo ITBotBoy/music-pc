@@ -404,7 +404,7 @@ export const getUrlBatch = async (id, platform) => {
         const aId = `${platform}_${id}`;
         delete findMap[aId];
         obj[aId] = {
-            ...allSongs[aId],
+            ...(allSongs[aId] || {}),
             br: 128000,
             url: res.data[id],
             pUrl: res.data[id],
@@ -423,7 +423,7 @@ export const getUrlBatch = async (id, platform) => {
             Object.keys(res && res.data || {}).forEach((id) => {
                 const {url, bId, bPlatform} = res.data[id];
                 newObj[id] = {
-                    ...allSongs[id],
+                    ...(allSongs[id] || {}),
                     url,
                     pUrl: url,
                     bId,
