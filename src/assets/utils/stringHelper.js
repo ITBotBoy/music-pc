@@ -5,7 +5,7 @@
 * @params key: 想要筛选得到的值， 选填（如果未填，返回一个包含所有query信息的object）
 *
 * */
-import router from 'vue-router'
+import router from '@/router'
 
 export function getQueryFromUrl(key, search = window.location.href) {
     try {
@@ -32,7 +32,8 @@ export function getQueryFromUrl(key, search = window.location.href) {
 export function changeUrlQuery(obj, baseUrl = window.location.href, update = true) {
     const query = getQueryFromUrl(undefined, baseUrl);
     let url = baseUrl.split('?')[0];
-    url = process.env.NODE_ENV === 'development' ? url : url.replace('#', '');
+    // process.env.NODE_ENV === 'development' ? url :
+    url =  url.replace('#', '');
     const newQuery = {...query, ...obj};
     let queryArr = [];
     Object.keys(newQuery).forEach((key) => {
@@ -40,7 +41,9 @@ export function changeUrlQuery(obj, baseUrl = window.location.href, update = tru
             queryArr.push(`${key}=${newQuery[key]}`);
         }
     });
+    console.log(queryArr.length > 0 ? `${url}?${queryArr.join('&')}` : url)
     if (update) {
+        // console.log(router.push)
         router.push(queryArr.length > 0 ? `${url}?${queryArr.join('&')}` : url)
         // window.location = queryArr.length > 0 ? `${url}?${queryArr.join('&')}` : url;
     } else {

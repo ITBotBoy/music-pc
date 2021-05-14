@@ -145,9 +145,9 @@
         };
 
         request({ api: 'SINGER_INFO', data })
-          .then(({ data }) => {
-            this.baseInfo = data;
-            this.info.descs = data.intro || [];
+          .then(res => {
+            this.baseInfo = res && res.data || {};
+            this.info.descs = res && res.data.intro || [];
           });
       },
 
