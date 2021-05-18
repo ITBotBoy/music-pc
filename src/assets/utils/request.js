@@ -7,12 +7,12 @@ import axios from 'axios';
 let requestObjext={},countObjext={};
 axios.interceptors.response.use(async res => {
 //==============  所有请求完成后都要执行的操作  ==================
-    if (res.status && res.status == 200 && res.data && res.data.status == 'error' && !res.data.code) {
+    if (res.data && res.data.status == 'error' && !res.data.code) {
         return;
     }
     if(res.data.code>9999){
         let reqUrl=res.config.url;
-        const countFlag=reqUrl.replace(/(^\?|&)_t=[^&]*(&)?/g,'');
+        const countFlag=reqUrl.replace(/([?|&])_t=[^&]*(&)?/g,'');
         countObjext[countFlag]++
         let {url,data}=requestObjext[countFlag]
         if (requestObjext[countFlag].method === 'get') {
@@ -29,10 +29,15 @@ axios.interceptors.response.use(async res => {
         if(countObjext[countFlag]<2){
             const result=await axios({...requestObjext[countFlag],url})
             return result
+        }else {
+            window.VUE_APP.$message.error('请求失败，请刷新重试');
         }
     }
     return res;
 }, err => {
+    if(String(err).indexOf('timeout')>-1){
+        return window.VUE_APP.$message.error('请求超时，请刷新重试');
+    }
     const url = err.config && err.config.url;
     if (!url) {
         return {code: 500};
@@ -63,7 +68,7 @@ const request = (param, platform) => {
     } else {
         url += '?_t=' + data._t;
     }
-    const countFlag=url.replace(/(^\?|&)_t=[^&]*(&)?/g,'');
+    const countFlag=url.replace(/([?|&])_t=[^&]*(&)?/g,'');
     requestObjext[countFlag]={
         method,
         url: '' + recordUrl,
@@ -71,12 +76,12 @@ const request = (param, platform) => {
         headers: {
             'Host-Check': btoa(timer().str('YYYYMMDD')),
         },
-        timeout: 30000,
+        timeout: 30*1000,
     }
     countObjext[countFlag]=0
     return axios({...requestObjext[countFlag],url}).then((res) => {
-        delete countObjext[countFlag]
-        delete requestObjext[countFlag]
+        // delete countObjext[countFlag]
+        // delete requestObjext[countFlag]
         res.data = res.data || {};
         if (res.data.code === 200 || res.data.result === 100) {
             return res.data;

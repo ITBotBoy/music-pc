@@ -41,10 +41,9 @@ export function changeUrlQuery(obj, baseUrl = window.location.href, update = tru
             queryArr.push(`${key}=${newQuery[key]}`);
         }
     });
-    console.log(queryArr.length > 0 ? `${url}?${queryArr.join('&')}` : url)
     if (update) {
         // console.log(router.push)
-        router.push(queryArr.length > 0 ? `${url}?${queryArr.join('&')}` : url)
+        router.push({path:queryArr.length > 0 ? `${url}?${queryArr.join('&')}` : url})
         // window.location = queryArr.length > 0 ? `${url}?${queryArr.join('&')}` : url;
     } else {
         return `${url}?${queryArr.join('&')}`;

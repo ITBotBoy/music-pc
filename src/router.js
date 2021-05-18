@@ -19,9 +19,9 @@ const Feedback = () => import('./views/Feedback');
 const Top = () => import('./views/Top');
 
 Vue.use(Router);
-// process.env.NODE_ENV==='development'?'hash':
+//
 const router = new Router({
-    mode: 'history',
+    mode: process.env.NODE_ENV==='development'?'hash':'history',
     routes: [
         {
             path: '/simple',
