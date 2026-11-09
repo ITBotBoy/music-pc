@@ -3,7 +3,7 @@
 
 项目基于vue2，使用 vue-cli-3 作为脚手架，用vue全家桶搭建
 
-可以通过访问 http://music.renserve.com |  http://m.music.renserve.com 预览。
+可以通过访问预览。
 
 # PC端界面
 ![](./public/show-pc.jpg)
